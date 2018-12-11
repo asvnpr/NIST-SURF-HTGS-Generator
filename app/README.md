@@ -152,7 +152,7 @@ General browser requirements according to MDN web docs (untested):
 * Use as a native app (dev only. builds, but interface isn't running correctly):
     * requires npm and nodejs
     * The app is very barebones  
-    (I mean very. close button doesn't work, you have to force quit the app in all OS, 
+    (I mean **VERY**: close button doesn't work, you have to force quit the app in all OS, 
     modal windows aren't working at all, and icon was improvised quickly)
     * I defined [electron-packager](https://github.com/electron-userland/electron-packager) 
     targets in the package.json for 64 bit:
