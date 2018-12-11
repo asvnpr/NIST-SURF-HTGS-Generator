@@ -1,0 +1,33 @@
+{
+  "name": "htgs-generator",
+  "version": "1.0.0",
+  "description": "Web tool to design and create an HTGS Task Graph and generate its associated boilerplate code (class definitions, implementations, and task graph configuration). Developed for NIST via the NIST SURF Program in summer 2018. ",
+  "main": "main.js",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "d3": "3.5.17",
+    "izimodal": "^1.5.1",
+    "jszip": "latest",
+    "file-saver": "latest",
+    "electron": "latest",
+    "electron-packager": "latest"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
+  },
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . \"HTGS Generator\" --overwrite --build-version=1.0.0 --platform=darwin --arch=x64 --icon=assets/icons/macOS/icon.icns --prune=true --out=build/macOS",
+    "package-win": "electron-packager . \"HTGS Generator\" --overwrite --build-version=1.0.0 --platform=win32 --arch=x64 --icon=assets/icons/Windows/icon.ico --prune=true --out=build/Windows --version-string.CompanyName=NIST",
+    "package-linux": "electron-packager . \"HTGS Generator\" --overwrite --platform=linux --arch=x64 --icon=assets/icons/Linux/icon1024x1024.png --prune=true --out=build/Linux"
+  },
+  "keywords": [
+    "htgs",
+    "hybrid",
+    "hybrid-workflow",
+    "taskgraph",
+    "nist"
+  ],
+  "author": "Alejandro Salvador Vega Nogales",
+  "license": "X11"
+}

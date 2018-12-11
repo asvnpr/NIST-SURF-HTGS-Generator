@@ -1,0 +1,159 @@
+/* change colors later */
+#class-menu {
+    display: none;
+    position: inherit;
+    background: whitesmoke;
+    min-width: 100%;
+    overflow: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding-top: 0;
+    padding-right: 1%;
+    padding-left: 1%;
+    padding-bottom: 10%;
+}
+
+#edge-menu-container {
+    display: none;
+    position: inherit;
+    background: whitesmoke;
+    min-width: 100%;
+    overflow: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding-top: 0;
+    padding-right: 1%;
+    padding-left: 1%;
+    padding-bottom: 10%;
+}
+
+#graph-gen-container {
+    display: none;
+    overflow: auto;
+}
+    
+#dataclass-params-container {
+    display: none;
+    overflow: auto;
+}
+
+#add-dataclass-param {
+    float: left;
+}
+
+#dataclass-done {
+    float: right;
+}
+
+#dataclass-buttons {
+    margin: 1%;
+}
+
+#params-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.dataclass-params {
+    min-width: 95%;
+    width: auto;
+    height: auto;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: 2%;
+}
+
+.dataclass-params tr {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.dataclass-params tr:nth-child(even){background-color: #f2f2f2;}
+
+.dataclass-params td + td { border-left: 1px solid black; }
+
+.dataclass-params td { text-align: center; }
+
+.dataclass-params th + th { border-left: 1px solid black; }
+
+.dataclass-params th, .dataclass-params td {
+    text-align: center;
+    border: 1px solid black;
+}
+
+#new-param-container {
+    width: 100%;
+    background-color: lightgrey;
+}
+
+.parameter-access {
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.IO-item {
+    list-style: none;
+}
+
+.rm-item, .edit-item {
+    color: black;
+    padding: 0;
+    font-size: 16px;
+}
+
+.glyphicon-remove-sign, .glyphicon-edit {
+    font-size: 1em;
+    /*margin: 3px 20px;*/
+    -webkit-transition: 0.6s ease-out;
+    -moz-transition:  0.6s ease-out;
+    transition:  0.6s ease-out;
+}
+
+.glyphicon-remove-sign:hover {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+    color: red;
+}
+
+.glyphicon-edit:hover {
+    color: dodgerblue;
+}
+
+#rm-class {
+    float: right;
+}
+
+#rm-class-btn {
+    background-color: red;
+    color: ghostwhite;
+    padding: 0.4em;
+}
+
+#create-done {
+    margin-bottom: 1em;
+}
+
+#create-btn {
+    float: left;
+}
+
+#create-class-done {
+    background-color: lightgreen;
+    color: ghostwhite;
+    padding: 0.4em;
+}
+
+#graph-buttons {
+    width: 100%;
+}
+
+#dl-htgs {
+    float: right;
+}
+
+.class-parameter {
+    padding-top: 1em;
+}
+

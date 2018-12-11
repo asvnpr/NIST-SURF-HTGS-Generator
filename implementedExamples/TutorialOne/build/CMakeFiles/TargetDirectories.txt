@@ -1,0 +1,3 @@
+/home/asv/Downloads/TutorialOne/build/CMakeFiles/rebuild_cache.dir
+/home/asv/Downloads/TutorialOne/build/CMakeFiles/TutorialOne.dir
+/home/asv/Downloads/TutorialOne/build/CMakeFiles/edit_cache.dir

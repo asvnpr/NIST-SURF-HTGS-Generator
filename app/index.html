@@ -1,0 +1,271 @@
+<!--// NIST-developed software is provided by NIST as a public service. You may use, copy and distribute copies of the-->
+<!--software in any medium, provided that you keep intact this entire notice. You may improve, modify and create derivative-->
+<!--works of the software or any portion of the software, and you may copy and distribute such modifications or works.-->
+<!--Modified works should carry a notice stating that you changed the software and should note the date and nature of any-->
+<!--such change. Please explicitly acknowledge the National Institute of Standards and Technology as the source of the-->
+<!--software.-->
+<!--// NIST-developed software is expressly provided "AS IS." NIST MAKES NO WARRANTY OF ANY KIND, EXPRESS, IMPLIED, IN FACT-->
+<!--OR ARISING BY OPERATION OF LAW, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A-->
+<!--PARTICULAR PURPOSE, NON-INFRINGEMENT AND DATA ACCURACY. NIST NEITHER REPRESENTS NOR WARRANTS THAT THE OPERATION OF THE-->
+<!--SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT ANY DEFECTS WILL BE CORRECTED. NIST DOES NOT WARRANT OR MAKE ANY-->
+<!--REPRESENTATIONS REGARDING THE USE OF THE SOFTWARE OR THE RESULTS THEREOF, INCLUDING BUT NOT LIMITED TO THE CORRECTNESS,-->
+<!--ACCURACY, RELIABILITY, OR USEFULNESS OF THE SOFTWARE.-->
+<!--// You are solely responsible for determining the appropriateness of using and distributing the software and you assume-->
+<!--all risks associated with its use, including but not limited to the risks and costs of program errors, compliance with-->
+<!--applicable laws, damage to or loss of data, programs or equipment, and the unavailability or interruption of operation.-->
+<!--This software is not intended to be used in any situation where a failure could cause risk of injury or damage to-->
+<!--property. The software developed by NIST employees is not subject to copyright protection within the United States.-->
+
+<!DOCTYPE HTML>
+<html>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <head>
+        <link rel="icon" type="image/png" href="images/hammer-icon.png" sizes="16x16">
+        <link rel="stylesheet" href="css/graph-creator.css" />
+        <link rel="stylesheet" href="css/modals.css"/>
+        <!--jquery CDN-->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- d3 for graph visualization. source from: https://github.com/d3/d3 -->
+        <script src="imports/js/d3-v3.min.js" charset="utf-8"></script>
+	<!-- font-awesome and bootstrap icons -->>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!--toast notifications from: https://github.com/JamieLivingstone/Notifications -->
+        <link rel="stylesheet" href="imports/css/notifications.css">
+        <script src="imports/js/notifications.js"></script>
+         <!-- modal windows. source from: http://izimodal.marcelodolce.com/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css"/>
+        <!-- for zipping files. source from: https://stuk.github.io/jszip/ -->
+        <script src="imports/js/jszip.min.js"></script>
+        <!-- for saving files. source from: https://github.com/eligrey/FileSaver.js -->
+        <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+    </head>
+
+    <body>
+
+        <div class="row">
+
+            <div class="column" id="column-left">
+
+                <div id="toolbox">
+
+                    <input type="file" id="hidden-file-upload">
+                    <input type="image" id="htgs-icon" title="HTGS icon" src="images/htgs-icon.png" alt="htgs icon">
+
+                    <div class="button-group" id="task-buttons">
+
+                        <div class="button-container" id="create-class">
+                            <input type="image" class="button-icon" id="create-class-icon"  title="create class"
+                                   src="images/create-class-icon.svg" alt="create class">
+                            <label class="button-label" for="create-class-icon">Create Class</label>
+                        </div>
+
+                        <div class="button-container" id="edit-class">
+                            <input type="image" class="button-icon" id="edit-class-icon" title="edit class"
+                                   src="images/edit-class-icon.svg" alt="edit class">
+                            <label class="button-label" for="edit-class-icon">Edit Class</label>
+                        </div>
+
+                        <div class="button-container" id="class-params">
+                            <input type="image" class="button-icon" id="class-params-icon" title="class params"
+                                   src="images/class-params-icon.svg" alt="class params">
+                            <label class="button-label" for="class-params-icon">Define Class Parameters</label>
+                        </div>
+
+                    </div>
+
+                    <div class="button-group" id="draw-buttons">
+
+                        <div class="button-container" id="draw-node">
+                            <input type="image" class="button-icon" id="draw-node-icon" title="draw node"
+                                   src="images/draw-node-icon.png" alt="create task">
+                            <label class="button-label" for="draw-node-icon">Draw Node</label>
+                        </div>
+
+                        <div class="button-container" id="draw-edge">
+                            <input type="image" class="button-icon" id="draw-edge-icon"  title="draw edge"
+                                   src="images/draw-edge-icon.png" alt="create edge">
+                            <label class="button-label" for="draw-edge-icon">Draw Edge</label>
+                        </div>
+
+                    </div>
+
+                    <div class="button-group" id="class-selectors">
+
+                        <div class="button-container" id="taskclass-selector">
+                            <select id="taskclass-selection">
+                            </select>
+                            <label class="button-label" for="taskclass-selection">Select a Task Class</label>
+                        </div>
+
+                        <div class="button-container" id="dataclass-selector">
+                            <select id="dataclass-selection">
+                                <option value="new">New Dataclass</option>
+                            </select>
+                            <label class="button-label" for="dataclass-selection">Select a Data Class</label>
+                        </div>
+
+                    </div>
+
+                    <div class="button-group" id="graph-buttons">
+
+                        <div class="button-container" id="upload-graph">
+                            <input type="image" class="button-icon" id="upload-graph-icon"  title="upload graph"
+                                   src="images/upload-icon.png" alt="upload graph">
+                            <label class="button-label" for="upload-graph-icon">Upload Graph</label>
+                        </div>
+
+                        <div class="button-container" id="download-graph">
+                            <input type="image" class="button-icon" id="download-graph-icon" title="download graph"
+                                   src="images/download-icon.png" alt="DL/gen graph">
+                            <label class="button-label" for="download-graph-icon">Generate Graph</label>
+                        </div>
+
+                        <div class="button-container" id="save-graph">
+                            <input type="image" class="button-icon" id="save-graph-icon" title="save graph"
+                                   src="images/save-icon.svg" alt="save graph">
+                            <label class="button-label" for="save-graph-icon">Save Graph</label>
+                        </div>
+
+                        <div class="button-container" id="delete-graph">
+                            <input type="image" class="button-icon" id="delete-graph-icon"
+                                   title="delete graph" src="images/trash-icon.png" alt="delete graph">
+                            <label class="button-label" for="delete-graph-icon">Delete Graph</label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="column" id="column-middle">
+
+                <div id="graph">
+                </div>
+
+                <div id="graph-gen-container">
+                    <div id="graph-gen-dialog">
+                    </div>
+                    <div id="graph-gen-buttons">
+                    </div>
+                </div>
+
+                <div id="dataclass-params-container">
+                    <div id="params-wrapper">
+                        <table id="private-params" class="dataclass-params">
+                            <tr>
+                                <th colspan="7" class="parameter-access">Private: </th>
+                            </tr>
+                            <tr id="private-param-headers">
+                                <th>Type</th>
+                                <th>Name</th>
+                                <th>Getter</th>
+                                <th>Setter</th>
+                                <th>Pointer</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
+                            </tr>
+                        </table>
+                        <table id="protected-params" class="dataclass-params">
+                            <tr>
+                                <th colspan="7" class="parameter-access">Protected: </th>
+                            </tr>
+                            <tr id="protected-param-headers">
+                                <th>Type</th>
+                                <th>Name</th>
+                                <th>Getter</th>
+                                <th>Setter</th>
+                                <th>Pointer</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
+                            </tr>
+                        </table>
+                        <table id="public-params" class="dataclass-params">
+                            <tr>
+                                <th colspan="7" class="parameter-access">Public: </th>
+                            </tr>
+                            <tr id="public-param-headers">
+                                <th>Type</th>
+                                <th>Name</th>
+                                <th>Getter</th>
+                                <th>Setter</th>
+                                <th>Pointer</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
+                            </tr>
+                        </table>
+                        <br>
+                        <h4 id="new-param-header" style="text-align: center; margin-top: 0.5em"><u>New Parameter:</u></h4>
+                        <form id="new-param-container">
+                            <select id="new-param-access">
+                                <option value="private">private</option>
+                                <option value="public">public</option>
+                                <option value="protected">protected</option>
+                            </select>
+                            <select id="new-param-type">
+                                <option value="bool">bool</option>
+                                <option value="short">short</option>
+                                <option value="int">int</option>
+                                <option value="long">long</option>
+                                <option value="float">float</option>
+                                <option value="double" selected>double</option>
+                                <option value="string">string</option>
+                                <option value="Dataclass">Dataclass</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                            <input class="htgs-var" id="new-param-name" type="text" placeholder="Name">
+                            <label for="new-param-getter">Getter?</label>
+                            <input id="new-param-getter" type="checkbox">
+                            <label for="new-param-setter">Setter?</label>
+                            <input id="new-param-setter" type="checkbox">
+                            <label for="new-param-pointer">Pointer?</label>
+                            <input id="new-param-pointer" type="checkbox">
+                        </form>
+                        <div id="dataclass-buttons">
+                            <button id="add-dataclass-param" type="button">Add parameter</button>
+                            <button id="dataclass-done" type="button">Done</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="column" id="column-right">
+
+                <!--change id of this div-->
+                <div id="class-menu">
+                    <div id="class-parameters">
+                        <div class="class-parameter" id="class-type-selector">
+                            <label for="class-type">Class Type</label>
+                            <select id="class-type">
+                                <option value="simple-task" selected>Simple Task</option>
+                                <option value="bookkeeper-rule">Bookkeeper Rule</option>
+                                <option value="cuda-task">CUDA Task</option>
+                                <option value="memory-manager">Memory Manager</option>
+                                <option value="exec-pipeline">Execution Pipeline</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="edge-menu-container">
+                    <div id="edge-data-menu">
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <script src="js/graph-data-and-processing.js"></script>
+        <script src="js/graph-creator.js"></script>
+        <script src="js/menu-data-and-processing.js"></script>
+        <script src="js/graph-menus.js"></script>
+        <script src="js/form-fields.js"></script>
+        <script src="js/file-templates.js"></script>
+        <script src="js/graph-generator.js"></script>
+    </body>
+
+</html>

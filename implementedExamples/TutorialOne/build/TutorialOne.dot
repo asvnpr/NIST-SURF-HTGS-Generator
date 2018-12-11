@@ -1,0 +1,19 @@
+digraph { rankdir="TB"
+forcelabels=true;
+node[shape=record, fontsize=10, fontname="Verdana"];
+edge[fontsize=10, fontname="Verdana"];
+graph [compound=true, labelloc=top, labeljust=left, label="Compute time: 0.000216 s
+Creation time: 0.000114 s
+"];
+x0x55725e74c190 -> x0x55725e74be70;
+x0x55725e74c190[label="0",shape=box,style=rounded,color=black,width=.2,height=.2];
+x0x55725e74be70 -> x0x55725e74c4e0;
+x0x55725e74c4e0[label="0",shape=box,style=rounded,color=black,width=.2,height=.2];
+x0x55725e74be70;
+x0x55725e74be70[label="add two numbers x1
+",shape=box,style=filled,fillcolor=white, color=black,width=.2,height=.2];
+x0x55725e74c190[label="Graph Input
+0"];
+{ rank = sink; x0x55725e74c4e0[label="Graph Output
+0"]; }
+}

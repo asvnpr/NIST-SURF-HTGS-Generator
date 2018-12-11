@@ -1,0 +1,201 @@
+/* in general: we should test on several devices and
+ probably removed hardcoded pixel values*/
+
+* {
+    box-sizing: border-box;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+#graph {
+    border: 2px;
+    border-color: #000;
+}
+
+#column-left {
+    width: 12vw;
+}
+
+#column-middle {
+    width: 70vw;
+    background-color:#ccc;
+}
+
+#column-right {
+    width: 19vw;
+    background-color:#bbb;
+}
+
+.middle {
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: rgb(248, 248, 248)
+}
+
+p {
+     text-align: center;
+     position: relative;
+}
+
+/* begin left toolbar styling */
+
+#toolbox {
+    position: relative;
+    border: 2px solid #CCCCCC;
+    border-radius: 5px;
+    padding-left: 0;
+    padding-right: 3%;
+    z-index: 5;
+    text-align: center;
+    max-height: 100vh;
+    overflow: auto;
+}
+
+#toolbox div {
+    position: relative;
+    min-width: 100%;
+    right:0;
+}
+
+#toolbox input {
+    position: relative;
+    width: 4.5em;
+}
+
+.button-group {
+    border-style: solid;
+    border-width: 5px 0 0 0;
+    border-color: darkgrey;
+    min-width: 100%;
+}
+
+.button-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 5%;
+}
+
+#htgs-icon {
+    margin-top: 1.5em;
+    height: 4em;
+    min-width: 8em;
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: center;
+}
+
+
+
+.button-icon {
+    opacity: 0.4;
+}
+
+/* labels for menu */
+.button-label {
+    opacity: 0.4;
+    display: block;
+    float: inside;
+    font-size: small;
+}
+
+/* descendant styling. see more at:
+ https://stackoverflow.com/questions/6910049/on-a-css-hover-event-can-i-change-another-divs-styling*/
+
+
+#hidden-file-upload {
+    display: none;
+}
+
+#download-input {
+    margin: 0 0.5em;
+}
+
+/* end left toolbar styling */
+
+/* begin right, create menu styling */
+
+#class-menu {
+    padding-top: 1em;
+    margin: auto;
+}
+
+/* end right, create menu styling*/
+
+.conceptG text {
+    pointer-events: none;
+}
+
+marker {
+    fill: #333;
+}
+
+g.conceptG circle {
+    fill: #F6FBFF;
+    stroke: #333;
+    stroke-width: 2px;
+}
+
+g.conceptG:hover circle {
+    fill: rgb(200, 238, 241);
+}
+
+g.selected circle {
+    fill: rgb(250, 232, 255);
+}
+g.selected:hover circle {
+    fill: rgb(250, 232, 255);
+}
+
+path.link {
+    fill: none;
+    stroke: #030303;
+    stroke-width: 6px;
+    cursor: default;
+}
+
+path.invalid-link {
+    fill: none;
+    stroke: #ce1a0f;
+    stroke-width: 6px;
+    cursor: default;
+}
+
+path.link:hover {
+    stroke: rgb(94, 196, 204);
+}
+
+g.connect-node circle {
+    fill: #BEFFFF;
+}
+
+path.link.hidden {
+    stroke-width: 0;
+}
+
+path.link.selected {
+    stroke: rgb(229, 172, 247);
+}

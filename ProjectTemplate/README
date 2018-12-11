@@ -1,0 +1,7 @@
+How to compile your new project:
+
+1) cd into the 'ProjectTemplate' directory
+2) mkdir build && cd build
+3) cmake ../ -DHTGS_INCLUDE_DIR=<path/to/htgs/src>
+4) make
+5) Run with './ProjectTemplate'

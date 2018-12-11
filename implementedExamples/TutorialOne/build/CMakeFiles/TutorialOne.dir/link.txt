@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -pthread -O3 -DNDEBUG  -rdynamic CMakeFiles/TutorialOne.dir/src/main.cpp.o CMakeFiles/TutorialOne.dir/src/tasks/AddTask.cpp.o  -o TutorialOne -lpthread 
