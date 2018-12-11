@@ -37,8 +37,7 @@ program project
     [HTGS](https://github.com/usnistgov/HTGS) code from the designed graph, tasks, and 
     data classes.  
     * Built with HTML5, css, Javascript, Jquery, and d3js v3  
-    * Follow the README in the generator directory for instructions and an explanation 
-    of the interface
+    * Follow the README in this directory for instructions and an explanation of the interface
 * implementedExamples: some htgs projects and tutorials that were created with the HTGS-generator 
 (except non-generated code)
 * ProjectTemplate: an example project of how the structure of a project generated with  
